@@ -11,7 +11,7 @@ def redimensionar_imagem(caminho):
 
         # Obtém as dimensões atuais da imagem
         largura_atual, altura_atual = imagem.size
-
+        
         if (altura_atual/Target_height)>(largura_atual/Target_width):
             return preenchimento_lateral(imagem,largura_atual,altura_atual)
             
