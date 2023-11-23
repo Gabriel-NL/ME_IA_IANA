@@ -1,5 +1,5 @@
 import progressbar
-from PreenchimentoManual import redimensionar_imagem
+from Lib_Preenchimento import redimensionar_imagem
 from PIL import Image
 import os
 
@@ -8,6 +8,7 @@ def redimensionar_e_salvar_imagem(caminho_imagem, pasta_destino):
         nova_imagem = redimensionar_imagem(caminho_imagem)
         nome_arquivo = os.path.basename(caminho_imagem)
         caminho_destino = os.path.join(pasta_destino, nome_arquivo)
+        nova_imagem = nova_imagem.convert('L')
         nova_imagem.save(caminho_destino)
         #print(f"Imagem {nome_arquivo} redimensionada e salva em {pasta_destino}")
     except Exception as error:
@@ -27,8 +28,8 @@ def redimensionar_todas_as_imagens(pasta_origem, pasta_destino):
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
     
-    pasta_origem = "Dataset\ImNotDog"
-    pasta_destino = "Dataset\DogFalse"
+    pasta_origem = "Dataset\ImDog"
+    pasta_destino = "Dataset\DogTrue"
 
     if os.path.exists(pasta_origem):
         redimensionar_todas_as_imagens(pasta_origem, pasta_destino)

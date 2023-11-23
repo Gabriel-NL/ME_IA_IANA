@@ -11,7 +11,7 @@ def redimensionar_imagem(caminho):
 
         # Obtém as dimensões atuais da imagem
         largura_atual, altura_atual = imagem.size
-        
+
         if (altura_atual/Target_height)>(largura_atual/Target_width):
             return preenchimento_lateral(imagem,largura_atual,altura_atual)
             
@@ -32,6 +32,7 @@ def preenchimento_lateral(imagem,largura,altura):
     nova_largura=(largura*Target_height)/altura
 
     imagem = imagem.resize((int(nova_largura), Target_height), Image.BICUBIC)
+
     x = (imagem_com_bordas.width - imagem.width) // 2
     y = 0
 
@@ -44,8 +45,10 @@ def preenchimento_sanduiche(imagem,largura,altura):
     #236w x 332h
     #3840w x ?h
     imagem_com_bordas = Image.new('RGB', (Target_width, Target_height), 'black')
+
     nova_altura=(altura*Target_width)/largura
-    imagem = imagem.resize((Target_height, int(largura) ), Image.BICUBIC)
+
+    imagem = imagem.resize((Target_width, int(nova_altura) ), Image.BICUBIC)
 
     x=0
     y = (imagem_com_bordas.height - imagem.height) // 2
